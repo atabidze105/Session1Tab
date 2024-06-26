@@ -1,0 +1,77 @@
+<Window 
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1000"
+	Background="LightGray"
+	WindowState="Maximized"
+	x:Class="Session1Tab.MainWindow"
+	Title="Session1Tab">
+	<Grid 
+		RowDefinitions="*,*,*,*"
+		ColumnDefinitions="*,*,*,*">
+		<Border
+			Grid.Column="1" Grid.ColumnSpan="2"
+			Grid.Row="1" Grid.RowSpan="2"
+			BorderThickness="1"
+			BorderBrush="Black"
+			CornerRadius="9"
+			Background="White">
+			<Grid
+				RowDefinitions="*,*,*"
+				ColumnDefinitions="*,*,*">
+				<TextBlock 
+					Text="Добро пожаловать!" FontSize="35"
+					FontWeight="DemiBold" Grid.ColumnSpan="3"
+					HorizontalAlignment="Center" VerticalAlignment="Center"/>
+				<TextBlock
+					Text="Введите логин и пароль:" FontSize="25"
+					Grid.ColumnSpan="3" Margin="0 0 0 11"
+					HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+				<StackPanel
+					Grid.Row="1" Grid.Column="1">
+					<!--Логин-->
+					<TextBox
+						Name="tbox_login"
+						Watermark="Логин"
+						VerticalAlignment="Top" Margin="0 30 0 10"
+						Height="40"
+						VerticalContentAlignment="Center"/>
+					<TextBlock
+						Name="tblock_login"
+						Text="Неверный логин"
+						Foreground="Red"
+						IsVisible="False"/>
+					<!--Пароль-->
+					<TextBox
+						Name="tbox_password"
+						Watermark="Пароль"
+						PasswordChar="•"
+						VerticalAlignment="Bottom" Margin="0 20 0 10"
+						Height="40"
+						VerticalContentAlignment="Center"/>
+					<TextBlock
+						Name="tblock_password"
+						Text="Неверный пароль"
+						Foreground="Red"
+						IsVisible="False"/>
+				</StackPanel>
+				<Button
+					Name="btn_login"
+					Click="LoggingIn"
+					Content="Войти"
+					FontSize="30"
+					Grid.Row="2" Grid.ColumnSpan="2"
+					HorizontalAlignment="Center"/>
+				<Button
+					Name="btn_guest"
+					Click="LoggingIn"
+					Content="Войти как гость"
+					FontSize="30" Grid.Column="1"
+					Grid.Row="2" Grid.ColumnSpan="2"
+					HorizontalAlignment="Center"/>
+			</Grid>
+		</Border>
+	</Grid>
+</Window>

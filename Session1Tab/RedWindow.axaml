@@ -1,0 +1,161 @@
+<Window 
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1000"
+	x:Class="Session1Tab.RedWindow"
+	WindowState="Maximized"
+	Title="RedWindow"
+	Background="LightGray">
+	<Grid
+		RowDefinitions="*,*,*,*,*"
+		ColumnDefinitions="*,*,*,*">
+		<Border
+			Grid.Column="1" Grid.Row="1"
+			Grid.ColumnSpan="2" Grid.RowSpan="3"
+			BorderBrush="Black"
+			BorderThickness="1"
+			Background="White"
+			CornerRadius="10">
+			<Panel>
+				<Grid
+					ColumnDefinitions="*,*,*,*"
+					RowDefinitions="*,*,*,*,*">
+					<!--Заголовок-->
+					<TextBlock
+						Name="tblock_panelHeader"
+						Grid.ColumnSpan="4"
+						HorizontalAlignment="Center"
+						FontSize="25" FontWeight="Bold"
+						Margin="0 15 0 0"/>
+					<StackPanel
+						Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="3">
+						<!--ID-->
+						<TextBlock
+							Name="tblock_id"
+							FontSize="20" FontWeight="Bold"
+							Margin="10 0"/>
+						<!--Название-->
+						<TextBlock
+							Text="Наименование товара:"
+							FontSize="20" FontWeight="Bold"
+							Margin="10 0"/>
+						<TextBox
+							Name="tbox_pName"
+							Margin="10 10"/>
+						<!--Производитель-->
+						<TextBlock
+							Text="Производитель:"
+							FontSize="20" FontWeight="Bold"
+							Margin="10 0"/>
+						<TextBox
+							Name="tbox_pSupplier"
+							Margin="10 10"/>
+						<!--Количество-->
+						<TextBlock
+							Text="Количество:"
+							FontSize="20" FontWeight="Bold"
+							Margin="10 0"/>
+						<TextBox
+							Name="tbox_pQuantity"
+							Margin="10 10"/>
+						<!--Стоимость-->
+						<TextBlock
+							Text="Стоимость:"
+							FontSize="20" FontWeight="Bold"
+							Margin="10 0"/>
+						<TextBox
+							Name="tbox_pPrice"
+							Margin="10 10"/>
+						<!--Категория-->
+						<StackPanel
+							Orientation="Horizontal">
+							<StackPanel>
+								<TextBlock
+									Text="Единицы измерения:"
+									FontSize="20" FontWeight="Bold"
+									Margin="10 0 0 10"/>
+								<ComboBox
+									Name="cbox_measurements"
+									FontSize="18"
+									Margin="10 0"/>
+							</StackPanel>
+							<StackPanel>
+								<TextBlock
+									Text="Категория:"
+									FontSize="20" FontWeight="Bold"
+									Margin="10 0 0 10"/>
+								<ComboBox
+									Name="cbox_cathegories"
+									FontSize="18"
+									Margin="10 0"/>
+							</StackPanel>
+						</StackPanel>						
+					</StackPanel>
+					<StackPanel
+						Grid.Row="1" Grid.Column="2"
+						Grid.ColumnSpan="2" Grid.RowSpan="3">
+						<!--Описание-->
+						<TextBlock
+							Text="Описание:"
+							Grid.Column="2"
+							FontSize="20" FontWeight="Bold"
+							Margin="10 0"/>
+						<TextBox
+							Name="tbox_pDescription"
+							Margin="10"
+							Height="150"
+							TextWrapping="Wrap"/>
+						<!--Изображение-->
+						<TextBlock
+							Text="Изображение:"
+							FontSize="20" FontWeight="Bold"
+							Margin="10 0"/>
+						<StackPanel
+							Orientation="Horizontal">
+							<!--Превью изображения-->
+							<StackPanel
+								HorizontalAlignment="Left" Margin="10">
+								<Image
+									Name="img_preview"
+									IsVisible="False"
+									Height="120"/>
+								<TextBlock
+									Name="tblock_preview"
+									IsVisible="False"
+									HorizontalAlignment="Center"/>
+							</StackPanel>
+							<!--Кнопки для  выбора и удаления изображения-->
+							<StackPanel>
+								<Button 
+									Name="btn_imgAdd"
+									Content="Добавить изображение"
+									Click="ImageSelection"/>
+								<Button
+									Name="btn_imgDel"
+									Content="Удалить изображение"
+									Click="ImageSelection"/>
+							</StackPanel>
+						</StackPanel>
+					</StackPanel>
+					<!--Добавление товара и отмена-->
+					<Button
+						Name="btn_cancel"
+						Click="RedActivity"
+						Content="Отмена"
+						FontSize="20" HorizontalAlignment="Center"
+						VerticalAlignment="Bottom" Margin="15"
+						Grid.Row="4" Grid.ColumnSpan="2"/>
+					<Button
+						Name="btn_confirm"
+						Click="RedActivity"
+						FontSize="20" HorizontalAlignment="Center"
+						VerticalAlignment="Bottom" Margin="15"
+						Grid.Column="2"
+						Grid.Row="4" Grid.ColumnSpan="2"/>					
+				</Grid>
+			</Panel>
+		</Border>
+	</Grid>
+</Window>

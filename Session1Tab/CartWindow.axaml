@@ -1,0 +1,72 @@
+<Window 
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1000"
+	x:Class="Session1Tab.CartWindow"
+	x:CompileBindings="False"
+	WindowState="Maximized"
+	Title="CartWindow"
+	Background="LightGray">
+	<Grid
+		ColumnDefinitions="*,*,*"
+		RowDefinitions="*,*,*,*,*,*">
+		<Border
+			BorderBrush="Black"
+			BorderThickness="1"
+			CornerRadius="10"
+			Grid.Column="1"
+			Grid.Row="1"
+			Grid.RowSpan="4"
+			Background="White">
+			<!--корзина-->
+			<Grid
+				RowDefinitions="30,*,*,*,*,*">
+				<Panel>
+					<Grid 
+						ColumnDefinitions="*,*,*">
+						<TextBlock Text="Назание" FontSize="20" Margin="13 0"/>
+						<TextBlock Text="Количество" FontSize="20" HorizontalAlignment="Center" Grid.Column="1"/>
+						<TextBlock Text="Цена" FontSize="20" Grid.Column="2" HorizontalAlignment="Center" />
+					</Grid>
+				</Panel>
+				<ListBox
+					Name="LBox_cart"
+					Grid.Row="1" Grid.RowSpan="3">
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<Border
+								Height="30">
+								<Grid
+									ColumnDefinitions="*,*,*,*,30">
+									<TextBlock Text="{Binding cName}" FontSize="20" Grid.ColumnSpan="2"/>
+									<TextBlock Text="{Binding cQuantity}" FontSize="20" Grid.Column="2"/>
+									<TextBlock Text="{Binding cPrice}" FontSize="20" Grid.Column="3" HorizontalAlignment="Right" Margin=" 0 0 10 0"/>
+									<Button Name="btn_cartItemDelete" Tag="{Binding cId}" Content="&#10005;" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Right" Click="CartActivity"/>
+								</Grid>
+							</Border>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+				<!--текстблоки со стоимостью-->
+				<StackPanel
+					HorizontalAlignment="Right"
+					Grid.Row="4" Margin="10"
+					Orientation="Horizontal">
+					<TextBlock Text="К оплате:" FontSize="25" Margin="10 0"/>
+					<TextBlock Name="tblock_price" FontSize="25"/>
+				</StackPanel>
+				<!--кнопки-->
+				<StackPanel
+					HorizontalAlignment="Center"
+					Grid.Row="5"
+					Orientation="Horizontal">
+					<Button Name="btn_cartReturn" Content="Назад" FontSize="25" Margin="10 0" Click="CartActivity"/>
+					<Button Name="btn_cartClear" Content="Очистить корзину" FontSize="25" Margin="10 0" Click="CartActivity"/>
+					<Button Content="Оплатить" FontSize="25" Margin="10 0"/>
+				</StackPanel>
+			</Grid>
+		</Border>
+	</Grid>
+</Window>

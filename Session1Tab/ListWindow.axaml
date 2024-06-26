@@ -1,0 +1,157 @@
+<Window
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1000"
+	x:Class="Session1Tab.ListWindow"
+	x:CompileBindings="False"
+	WindowState="Maximized"	Title="ListWindow">
+	<Grid
+		RowDefinitions="125,*">
+		<!--Верхняя панель с кнопками добавления товара, выхода пользователя и поисковой строкой-->
+		<Panel
+			Height="100"
+			Background="LightGray">
+			<Grid
+				ColumnDefinitions="*,*,*">
+				<!--Строка поиска-->
+				<TextBlock 
+					Name="tblock_searchCount" FontSize="20"
+					FontWeight="DemiBold" HorizontalAlignment="Right"
+					Margin="15"/>
+				<StackPanel Grid.ColumnSpan="1"  Margin="20 0">
+					<TextBlock 
+						Text="Найти:" FontSize="25"
+						Margin="0 10"/>
+					<TextBox
+						Name="tbox_search" KeyUp="SearchingActivity"
+						Text=""
+						VerticalContentAlignment="Center" FontSize="23"
+						Height="40"
+						VerticalAlignment="Center"/>
+				</StackPanel>
+				<!--отображение товаров в корзине-->
+				<TextBlock
+						Name="tblock_cartCount"
+						Grid.Column="2" HorizontalAlignment="Left"
+						Margin="10"
+						FontSize="20"
+						FontWeight="DemiBold"/>
+					<!--Сортировка-->
+				<StackPanel
+					Grid.Column="1" Orientation="Horizontal"
+					VerticalAlignment="Bottom">
+					<StackPanel Margin="10">
+						<TextBlock
+							Text="Производители:"
+							FontSize="20"
+							FontWeight="DemiBold"/>
+						<ComboBox 
+							Name="cbox_sortSuppliers"
+							SelectionChanged="SelectionChanging"
+							FontSize="18"/>
+					</StackPanel>
+					<StackPanel Margin="10">
+						<TextBlock
+							Text="Стоимость:"
+							FontSize="20"
+							FontWeight="DemiBold"/>
+						<ComboBox 
+							Name="cbox_sortPrice"
+							SelectionChanged="SelectionChanging"
+							FontSize="18"
+							/>
+					</StackPanel>
+				</StackPanel>
+				<StackPanel
+					Grid.Column="2" Margin="10 15">
+					<!--отображение пользователя-->
+					<TextBlock
+							Name="tblock_user"
+							FontSize="20" FontWeight="Bold"
+							HorizontalAlignment="Right"
+							Text="Signed in: "/>
+					<!--Кнопки-->
+					<StackPanel
+						Orientation="Horizontal"
+						HorizontalAlignment="Right"
+						Margin="0 10 0 0">
+						<Button 
+							Name="btn_addProduct"
+							Content="Добавить товар" FontSize="20"
+							Click="ProductManipulation"/>
+						<Button
+							Name="btn_toShoppingCart"
+							Content="В корзину" FontSize="20"
+							Click="ToCart"/>
+						<Button 
+							Name="btn_logout"
+							Content="Выйти из аккаунта"
+							FontSize="20"
+							Click="LogOut"/>
+					</StackPanel>
+				</StackPanel>
+			</Grid>
+		</Panel>
+		<!--Листбокс-->
+		<ListBox
+			Name="LBox"
+			Grid.Row="1">
+			<!--элемент-->
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Border
+						BorderThickness="1"
+						BorderBrush="Black"
+						Background="{Binding Color}"
+						Height="150">
+						<Grid
+							ColumnDefinitions="150,*,200">
+							<!--Часть айтема с картинкой-->
+							<Image Source="{Binding pImage}" Margin="5"/>
+							<!--Часть с основной информацией-->
+							<Border
+								Grid.Column="1" BorderBrush="Black" BorderThickness="0.5">
+								<ScrollViewer>
+									<StackPanel
+										Orientation="Vertical">
+										<TextBlock Text="{Binding pName}" FontWeight="Bold" Margin="10 10 0 10"/>
+										<TextBlock Text="{Binding pDescription}" TextWrapping="Wrap" Margin="10 0 10 10"/>
+										<StackPanel Orientation="Horizontal"  Margin="10 0 0 10">
+											<TextBlock Text="Производитель: "/>
+											<TextBlock Text="{Binding pSupplier}"/>
+										</StackPanel>
+										<StackPanel Orientation="Horizontal"  Margin="10 0 0 10">
+											<TextBlock Text="Цена: "/>
+											<TextBlock Text="{Binding pPrice}"/>
+										</StackPanel>
+									</StackPanel>
+								</ScrollViewer>
+							</Border>
+							<!--Часть с кнопками-->
+							<Border Grid.Column="2">
+								<StackPanel
+									Orientation="Vertical" VerticalAlignment="Center" >
+									<WrapPanel HorizontalAlignment="Center">
+										<TextBlock Text="Осталось в наличии: " TextWrapping="Wrap"/>
+										<TextBlock Text="{Binding pQuantity}"/>
+										<TextBlock Text="{Binding Measurement}"/>
+									</WrapPanel>
+									<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 15 0 0">
+										<Button Name="btn_cartDel" Content="-" Tag="{Binding pId}" IsVisible="{Binding !Guest}" Click="CartManipulation"/>
+										<Button Name="btn_cartAdd" Content="+" Tag="{Binding pId}" IsVisible="{Binding !Guest}" Click="CartManipulation"/>
+									</StackPanel>
+									<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 15 0 0">
+										<Button Name="btn_red" Content="Red" Tag="{Binding pId}" IsVisible="{Binding Admin}" Click="ProductManipulation"/>
+										<Button Name="btn_del" Content="Del" Tag="{Binding pId}" IsVisible="{Binding Admin}" Click="ProductManipulation"/>
+									</StackPanel>
+								</StackPanel>
+							</Border >
+						</Grid>
+					</Border>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+	</Grid>
+</Window>
